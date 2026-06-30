@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Billing</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.container{
+width:90%;
+max-width:1000px;
+margin:40px auto;
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+input,select{
+padding:10px;
+margin:8px;
+width:220px;
+}
+button{
+padding:10px 20px;
+margin:8px;
+}
+#bill{
+margin-top:20px;
+padding:20px;
+border:1px solid #ccc;
+background:#f8f8f8;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🧾 Billing System</h1>
+
+<input type="text" id="customer" placeholder="Customer Name">
+
+<select id="product">
+<option value="65000">Laptop - ₹65000</option>
+<option value="500">Mouse - ₹500</option>
+<option value="1200">Keyboard - ₹1200</option>
+<option value="12000">Monitor - ₹12000</option>
+<option value="1800">Headphones - ₹1800</option>
+<option value="8500">Printer - ₹8500</option>
+<option value="5000">SSD - ₹5000</option>
+<option value="4300">UPS - ₹4300</option>
+</select>
+
+<input type="number" id="qty" placeholder="Quantity">
+
+<h3>Payment Method</h3>
+
+<label><input type="radio" name="pay" value="Cash" checked> Cash</label>
+<label><input type="radio" name="pay" value="Card"> Card</label>
+<label><input type="radio" name="pay" value="GPay"> GPay</label>
+<label><input type="radio" name="pay" value="PhonePe"> PhonePe</label>
+<label><input type="radio" name="pay" value="Paytm"> Paytm</label>
+
+<br>
+
+<button onclick="bill()">Generate Bill</button>
+
+<button onclick="window.print()">Print</button>
+
+<button onclick="location.href='dashboard.html'">Back</button>
+
+<div id="bill"></div>
+
+</div>
+
+<script>
+
+function bill(){
+
+let name=document.getElementById("customer").value;
+let price=Number(document.getElementById("product").value);
+let qty=Number(document.getElementById("qty").value);
+
+let subtotal=price*qty;
+let gst=subtotal*0.18;
+let total=subtotal+gst;
+
+let pay=document.querySelector('input[name="pay"]:checked').value;
+
+document.getElementById("bill").innerHTML=`
+
+<h2>Invoice</h2>
+<hr>
+
+<p><b>Customer :</b> ${name}</p>
+
+<p><b>Product Price :</b> ₹${price}</p>
+
+<p><b>Quantity :</b> ${qty}</p>
+
+<p><b>Subtotal :</b> ₹${subtotal.toFixed(2)}</p>
+
+<p><b>GST (18%) :</b> ₹${gst.toFixed(2)}</p>
+
+<h3>Total : ₹${total.toFixed(2)}</h3>
+
+<p><b>Payment :</b> ${pay}</p>
+
+<hr>
+
+<h3 style="color:green;">Thank You! Visit Again 😊</h3>
+
+`;
+
+}
+
+</script>
+
+</body>
+</html>

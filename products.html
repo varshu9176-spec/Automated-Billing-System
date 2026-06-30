@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Products</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.container{
+width:90%;
+max-width:1000px;
+margin:40px auto;
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+th,td{
+padding:12px;
+border:1px solid #ddd;
+text-align:center;
+}
+th{
+background:#5b4bff;
+color:white;
+}
+input{
+padding:10px;
+margin:5px;
+}
+button{
+padding:10px 15px;
+margin:5px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📦 Product Management</h1>
+
+<input type="text" id="pname" placeholder="Product Name">
+
+<input type="number" id="price" placeholder="Price">
+
+<input type="number" id="stock" placeholder="Stock">
+
+<button onclick="addProduct()">Add Product</button>
+
+<table>
+
+<tr>
+<th>Product</th>
+<th>Price</th>
+<th>Stock</th>
+<th>Action</th>
+</tr>
+
+<tbody id="table">
+
+<tr>
+<td>Laptop</td>
+<td>65000</td>
+<td>10</td>
+<td><button onclick="remove(this)">Delete</button></td>
+</tr>
+
+<tr>
+<td>Mouse</td>
+<td>500</td>
+<td>50</td>
+<td><button onclick="remove(this)">Delete</button></td>
+</tr>
+
+<tr>
+<td>Keyboard</td>
+<td>1200</td>
+<td>25</td>
+<td><button onclick="remove(this)">Delete</button></td>
+</tr>
+
+</tbody>
+
+</table>
+
+<br>
+
+<button onclick="location.href='dashboard.html'">⬅ Back</button>
+
+</div>
+
+<script>
+
+function addProduct(){
+
+let name=document.getElementById("pname").value;
+let price=document.getElementById("price").value;
+let stock=document.getElementById("stock").value;
+
+if(name==""||price==""||stock==""){
+alert("Enter all details");
+return;
+}
+
+let row=document.getElementById("table").insertRow();
+
+row.innerHTML=
+`<td>${name}</td>
+<td>${price}</td>
+<td>${stock}</td>
+<td><button onclick="remove(this)">Delete</button></td>`;
+
+document.getElementById("pname").value="";
+document.getElementById("price").value="";
+document.getElementById("stock").value="";
+
+}
+
+function remove(btn){
+btn.parentElement.parentElement.remove();
+}
+
+</script>
+
+</body>
+</html>

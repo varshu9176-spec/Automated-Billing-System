@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Customers</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.container{
+width:90%;
+max-width:1000px;
+margin:40px auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+padding:12px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+th{
+background:#5b4bff;
+color:white;
+}
+
+input{
+padding:10px;
+margin:5px;
+width:200px;
+}
+
+button{
+padding:10px 15px;
+margin:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>👥 Customer Management</h1>
+
+<input type="text" id="name" placeholder="Customer Name">
+
+<input type="text" id="phone" placeholder="Phone Number">
+
+<input type="email" id="email" placeholder="Email">
+
+<input type="text" id="address" placeholder="Address">
+
+<button onclick="addCustomer()">Add Customer</button>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+
+<th>Phone</th>
+
+<th>Email</th>
+
+<th>Address</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="customerTable">
+
+<tr>
+
+<td>Rahul</td>
+
+<td>9876543210</td>
+
+<td>rahul@gmail.com</td>
+
+<td>Chennai</td>
+
+<td><button onclick="removeCustomer(this)">Delete</button></td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<br>
+
+<button onclick="location.href='dashboard.html'">⬅ Back</button>
+
+</div>
+
+<script>
+
+function addCustomer(){
+
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let email=document.getElementById("email").value;
+let address=document.getElementById("address").value;
+
+if(name==""||phone==""||email==""||address==""){
+
+alert("Please fill all fields");
+
+return;
+
+}
+
+let row=document.getElementById("customerTable").insertRow();
+
+row.innerHTML=
+
+`<td>${name}</td>
+
+<td>${phone}</td>
+
+<td>${email}</td>
+
+<td>${address}</td>
+
+<td><button onclick="removeCustomer(this)">Delete</button></td>`;
+
+document.getElementById("name").value="";
+document.getElementById("phone").value="";
+document.getElementById("email").value="";
+document.getElementById("address").value="";
+
+}
+
+function removeCustomer(btn){
+
+btn.parentElement.parentElement.remove();
+
+}
+
+</script>
+
+</body>
+</html>
